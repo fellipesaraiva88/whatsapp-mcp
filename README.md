@@ -46,6 +46,35 @@ Here's an example of what you can do when it's connected to Claude.
 
 3. **Connect to the MCP server**
 
+   You can run the MCP server in two modes: **STDIO** (default) or **HTTP** (recommended for easier debugging).
+
+   ### Option A: HTTP Mode (Recommended)
+
+   For easier setup and debugging, use the HTTP mode:
+
+   ```bash
+   # Quick setup (automatically configures Claude Desktop)
+   ./setup_http.sh
+
+   # Start both bridge and HTTP server
+   ./start_whatsapp_mcp.sh
+   ```
+
+   Or manually:
+
+   ```bash
+   cd whatsapp-mcp-server
+   uv sync
+   python3 start_http_server.py
+   ```
+
+   This will:
+   - Start the MCP server on `http://localhost:8000`
+   - Automatically update your Claude Desktop configuration
+   - Show detailed logs for debugging
+
+   ### Option B: STDIO Mode (Original)
+
    Copy the below json with the appropriate {{PATH}} values:
 
    ```json
@@ -81,6 +110,23 @@ Here's an example of what you can do when it's connected to Claude.
    Open Claude Desktop and you should now see WhatsApp as an available integration.
 
    Or restart Cursor.
+
+## HTTP vs STDIO Mode
+
+### HTTP Mode Benefits
+- ✅ **Easier debugging**: See detailed logs in the terminal
+- ✅ **Automatic configuration**: Script updates Claude Desktop config
+- ✅ **Better error handling**: Clear error messages and status
+- ✅ **Remote access**: Can be accessed from other machines (if needed)
+- ✅ **Development friendly**: Easier to test and modify
+
+### STDIO Mode Benefits
+- ✅ **Lighter weight**: Direct integration with Claude
+- ✅ **No network overhead**: Direct process communication
+- ❌ **Harder to debug**: No visible logs
+- ❌ **Manual configuration**: Requires manual config file editing
+
+**Recommendation**: Use HTTP mode for development and debugging, STDIO for production if you prefer minimal overhead.
 
 ### Windows Compatibility
 

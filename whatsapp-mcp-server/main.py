@@ -247,5 +247,22 @@ def download_media(message_id: str, chat_jid: str) -> Dict[str, Any]:
         }
 
 if __name__ == "__main__":
-    # Initialize and run the server
-    mcp.run(transport='stdio')
+    import sys
+    import argparse
+
+    parser = argparse.ArgumentParser(description='WhatsApp MCP Server')
+    parser.add_argument('--transport', choices=['stdio', 'http'], default='stdio',
+                       help='Transport method (stdio or http)')
+    parser.add_argument('--host', default='localhost',
+                       help='Host to bind to (for HTTP transport)')
+    parser.add_argument('--port', type=int, default=8000,
+                       help='Port to bind to (for HTTP transport)')
+
+    args = parser.parse_args()
+
+    if args.transport == 'http':
+        # Run as HTTP server
+        mcp.run(transport='http', host=args.host, port=args.port)
+    else:
+        # Run as stdio server (default)
+        mcp.run(transport='stdio')

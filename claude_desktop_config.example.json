@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "whatsapp": {
+      "command": "python3",
+      "args": [
+        "/caminho/completo/para/whatsapp-mcp/whatsapp-mcp-server/main.py",
+        "--transport",
+        "http",
+        "--host",
+        "localhost",
+        "--port",
+        "8000"
+      ],
+      "env": {}
+    }
+  }
+}

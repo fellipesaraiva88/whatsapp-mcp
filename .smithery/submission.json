@@ -1,0 +1,143 @@
+{
+  "name": "whatsapp-mcp",
+  "displayName": "WhatsApp MCP Server",
+  "description": "Connect Claude to your personal WhatsApp account. Search messages, contacts, send messages and media files directly from Claude.",
+  "longDescription": "This MCP server enables Claude to interact with your personal WhatsApp account through the WhatsApp Web API. Features include searching through message history, finding contacts, sending text messages and media files (images, videos, documents, audio), and managing both individual and group conversations. All data is stored locally in SQLite and only accessed when you explicitly use the tools.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Luke Harries",
+    "email": "luke@lharries.com",
+    "url": "https://github.com/lharries"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lharries/whatsapp-mcp.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "whatsapp",
+    "messaging", 
+    "communication",
+    "social",
+    "chat",
+    "contacts",
+    "media",
+    "automation"
+  ],
+  "categories": [
+    "communication",
+    "social", 
+    "productivity"
+  ],
+  "homepage": "https://github.com/lharries/whatsapp-mcp",
+  "documentation": "https://github.com/lharries/whatsapp-mcp/blob/main/README.md",
+  "requirements": {
+    "python": ">=3.11",
+    "go": ">=1.18",
+    "os": ["macos", "linux", "windows"]
+  },
+  "installation": {
+    "methods": [
+      {
+        "type": "git",
+        "url": "https://github.com/lharries/whatsapp-mcp.git",
+        "instructions": [
+          "Clone the repository",
+          "Run ./setup_http.sh for HTTP mode (recommended)",
+          "Or follow manual installation in README.md"
+        ]
+      }
+    ]
+  },
+  "configuration": {
+    "stdio": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "{{PATH_TO_REPO}}/whatsapp-mcp-server",
+        "run",
+        "main.py"
+      ]
+    },
+    "http": {
+      "command": "python3",
+      "args": [
+        "{{PATH_TO_REPO}}/whatsapp-mcp-server/main.py",
+        "--transport",
+        "http",
+        "--host",
+        "localhost",
+        "--port",
+        "8000"
+      ]
+    }
+  },
+  "tools": [
+    {
+      "name": "search_contacts",
+      "description": "Search WhatsApp contacts by name or phone number"
+    },
+    {
+      "name": "list_messages",
+      "description": "Get WhatsApp messages with filtering and context options"
+    },
+    {
+      "name": "list_chats",
+      "description": "List available WhatsApp chats with metadata"
+    },
+    {
+      "name": "get_chat",
+      "description": "Get information about a specific chat"
+    },
+    {
+      "name": "send_message",
+      "description": "Send a WhatsApp message to a person or group"
+    },
+    {
+      "name": "send_file",
+      "description": "Send media files (images, videos, documents) via WhatsApp"
+    },
+    {
+      "name": "send_audio_message",
+      "description": "Send audio files as WhatsApp voice messages"
+    },
+    {
+      "name": "download_media",
+      "description": "Download media from WhatsApp messages"
+    },
+    {
+      "name": "get_message_context",
+      "description": "Get context around a specific message"
+    },
+    {
+      "name": "get_last_interaction",
+      "description": "Get most recent message with a contact"
+    }
+  ],
+  "features": [
+    "Personal WhatsApp account integration",
+    "Message search and retrieval",
+    "Contact management",
+    "Send text messages and media files",
+    "Group chat support",
+    "Local SQLite storage",
+    "Media download and upload",
+    "Voice message support",
+    "HTTP and STDIO transport modes",
+    "Cross-platform compatibility"
+  ],
+  "security": {
+    "dataHandling": "All WhatsApp data is stored locally in SQLite database. No data is sent to external services except when explicitly requested through MCP tools.",
+    "authentication": "Uses WhatsApp Web QR code authentication. Session data stored locally.",
+    "privacy": "Direct connection to WhatsApp Web API. No third-party services involved."
+  },
+  "screenshots": [
+    {
+      "url": "https://raw.githubusercontent.com/lharries/whatsapp-mcp/main/example-use.png",
+      "caption": "Example of WhatsApp MCP integration with Claude Desktop"
+    }
+  ],
+  "tags": ["messaging", "whatsapp", "communication", "social", "automation", "productivity"],
+  "maturity": "stable",
+  "maintenance": "active"
+}
